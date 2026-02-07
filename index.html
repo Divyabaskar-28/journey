@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Journey Holidays</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
@@ -1118,6 +1120,55 @@
                 font-size: 14px;
             }
         }
+.menu-toggle {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+@media(max-width:768px){
+    nav{
+        position: fixed;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: #007bff;
+        flex-direction: column;
+        display: none;
+    }
+    nav.show{
+        display: flex;
+    }
+    .menu-toggle{
+        display: block;
+    }
+}
+.carousel-track,
+.jh-track{
+   overflow-x:auto;
+   scroll-snap-type:x mandatory;
+}
+.upcoming-card,
+.stress-card,
+.jh-card{
+   scroll-snap-align:start;
+}
+.footer-col h4::after{
+   width: 30%;
+}
+@media(max-width:768px){
+   .footer-col h4::after{
+      margin:10px auto;
+   }
+}
+@media(max-width:768px){
+  .dropdown-content{
+    position: static;
+  }
+  .dropdown:hover .dropdown-content{
+    display:none;
+  }
+}
 
         
     </style>
@@ -1157,6 +1208,8 @@
             </a>
 
         </nav>
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
     </header>
 
     <div class="hero-slider">
@@ -1326,7 +1379,7 @@
             <div class="carousel-track">
                 <!-- Card 1 -->
                 <div class="stress-card">
-                    <img src="./Images/stress1.jpg" alt="Zero Processing Fee">
+                    <img src="./Images/stress1.jpg" alt="Zero Processing Fee" loading="lazy">
                     <h4>ZERO PROCESSING FEE WITH Journey Holidays</h4>
                     <p>Stress-Free Vacation with Journey Holidays</p>
                     <div class="features">
@@ -1338,7 +1391,7 @@
 
                 <!-- Card 2 -->
                 <div class="stress-card">
-                    <img src="./Images/stress2.jpg" alt="Zero Rupees Down">
+                    <img src="./Images/stress2.jpg" alt="Zero Rupees Down" loading="lazy">
                     <h4>ZERO RUPEES DOWN PAYMENT WITH Journey Holidays</h4>
                     <p>Stress-Free Vacation with Journey Holidays</p>
                     <div class="features">
@@ -1350,7 +1403,7 @@
 
                 <!-- Card 3 -->
                 <div class="stress-card">
-                    <img src="./Images/stress3.jpg" alt="No Cost EMI" style="      /* full image visible */
+                    <img src="./Images/stress3.jpg" loading="lazy" alt="No Cost EMI" style="      /* full image visible */
     object-position: top center;">
                     <h4>NO COST EMI HOLIDAYS WITH Journey Holidays</h4>
                     <p>Stress-Free Vacation with Journey Holidays</p>
@@ -1363,7 +1416,7 @@
 
                 <!-- Card 4 -->
                 <div class="stress-card">
-                    <img src="./Images/stress4.jpg" alt="Zero Interest">
+                    <img src="./Images/stress4.jpg" alt="Zero Interest" loading="lazy">
                     <h4>ZERO RUPEES INTEREST WITH Journey Holidays</h4>
                     <p>Stress-Free Vacation with Journey Holidays</p>
                     <div class="features">
@@ -1375,7 +1428,7 @@
 
                 <!-- Card 5 -->
                 <div class="stress-card">
-                    <img src="./Images/stress5.jpg" alt="Flexible Dates">
+                    <img src="./Images/stress5.jpg" alt="Flexible Dates" loading="lazy">
                     <h4>FLEXIBLE DATES WITH Journey Holidays</h4>
                     <p>Stress-Free Vacation with Journey Holidays</p>
                     <div class="features">
@@ -1387,7 +1440,7 @@
 
                 <!-- Card 6 -->
                 <div class="stress-card">
-                    <img src="./Images/stress6.jpg" alt="Custom Itineraries">
+                    <img src="./Images/stress6.jpg" alt="Custom Itineraries"  loading="lazy">
                     <h4>CUSTOM ITINERARIES WITH Journey Holidays</h4>
                     <p>Stress-Free Vacation with Journey Holidays</p>
                     <div class="features">
@@ -1450,7 +1503,7 @@
             <div class="jh-track">
 
                 <div class="jh-card">
-                    <img src="./Images/russia.jpg">
+                    <img src="./Images/russia.jpg" loading="lazy">
                     <div class="jh-info">
                         <span>9 Nights / 10 Days</span>
                         <h3>Russia<br>Group Departure</h3>
@@ -1458,7 +1511,7 @@
                 </div>
 
                 <div class="jh-card">
-                    <img src="./Images/europe-winter.jpg">
+                    <img src="./Images/europe-winter.jpg" loading="lazy">
                     <div class="jh-info">
                         <span>9 Nights / 10 Days</span>
                         <h3>Europe Winter<br>Group Departure</h3>
@@ -1466,7 +1519,7 @@
                 </div>
 
                 <div class="jh-card">
-                    <img src="./Images/bali.jpg">
+                    <img src="./Images/bali.jpg" loading="lazy">
                     <div class="jh-info">
                         <span>4 Nights / 5 Days</span>
                         <h3>Fantastic Bali<br>Group Departure</h3>
@@ -1474,7 +1527,7 @@
                 </div>
 
                 <div class="jh-card">
-                    <img src="./Images/egypt.jpg">
+                    <img src="./Images/egypt.jpg" loading="lazy">
                     <div class="jh-info">
                         <span>4 Nights / 5 Days</span>
                         <h3>Dreams of Egypt<br>Group Tour</h3>
@@ -1482,7 +1535,7 @@
                 </div>
 
                 <div class="jh-card">
-                    <img src="./Images/dubai.jpg">
+                    <img src="./Images/dubai.jpg" loading="lazy">
                     <div class="jh-info">
                         <span>5 Nights / 6 Days</span>
                         <h3>Dubai<br>Group Tour</h3>
@@ -1490,7 +1543,7 @@
                 </div>
 
                 <div class="jh-card">
-                    <img src="./Images/singapore.jpg">
+                    <img src="./Images/singapore.jpg" loading="lazy">
                     <div class="jh-info">
                         <span>6 Nights / 7 Days</span>
                         <h3>Singapore & Malaysia<br>Group Tour</h3>
@@ -1498,7 +1551,7 @@
                 </div>
 
                 <div class="jh-card">
-                    <img src="./Images/thailand.jpg">
+                    <img src="./Images/thailand.jpg" loading="lazy">
                     <div class="jh-info">
                         <span>5 Nights / 6 Days</span>
                         <h3>Thailand<br>Group Tour</h3>
@@ -1506,7 +1559,7 @@
                 </div>
 
                 <div class="jh-card">
-                    <img src="./Images/australia.jpg">
+                    <img src="./Images/australia.jpg" loading="lazy">
                     <div class="jh-info">
                         <span>9 Nights / 10 Days</span>
                         <h3>Australia<br>Group Tour</h3>
@@ -1514,7 +1567,7 @@
                 </div>
 
                 <div class="jh-card">
-                    <img src="./Images/japan.jpg">
+                    <img src="./Images/japan.jpg" loading="lazy">
                     <div class="jh-info">
                         <span>6 Nights / 7 Days</span>
                         <h3>Japan<br>Group Tour</h3>
@@ -1522,7 +1575,7 @@
                 </div>
 
                 <div class="jh-card">
-                    <img src="./Images/turkey.jpg">
+                    <img src="./Images/turkey.jpg" loading="lazy">
                     <div class="jh-info">
                         <span>7 Nights / 8 Days</span>
                         <h3>Turkey<br>Group Tour</h3>
@@ -1683,66 +1736,74 @@
 
     </footer>
 
-    <script>
+<script>
+function toggleMenu(){
+    document.querySelector('nav').classList.toggle('show');
+}
 
-        window.addEventListener('load', () => {
+window.addEventListener('load', () => {
 
-            const track = document.querySelector('.upcoming-packages .carousel-track');
-            const cards = Array.from(document.querySelectorAll('.upcoming-card'));
-            const dotsContainer = document.querySelector('.carousel-dots');
+    const track = document.querySelector('.upcoming-packages .carousel-track');
+    const cards = Array.from(document.querySelectorAll('.upcoming-card'));
+    const dotsContainer = document.querySelector('.carousel-dots');
 
-            const cardsPerView = 4;
-            let currentIndex = 0;
+    function getCardsPerView(){
+        if(window.innerWidth < 576) return 1;
+        if(window.innerWidth < 992) return 2;
+        return 4;
+    }
 
-            /* 🔒 Lock track width to prevent jump */
-            track.style.willChange = 'transform';
+    let cardsPerView = getCardsPerView();
+    window.addEventListener('resize',()=> {
+        cardsPerView = getCardsPerView();
+    });
 
-            /* Clone first 4 cards AFTER images loaded */
-            for (let i = 0; i < cardsPerView; i++) {
-                const clone = cards[i].cloneNode(true);
-                track.appendChild(clone);
-            }
+    let currentIndex = 0;
 
-            const totalSlides = Math.ceil(cards.length / cardsPerView);
+    /* clone cards */
+    for(let i=0;i<cardsPerView;i++){
+        track.appendChild(cards[i].cloneNode(true));
+    }
 
-            // Create dots
-            for (let i = 0; i < totalSlides; i++) {
-                const dot = document.createElement('span');
-                if (i === 0) dot.classList.add('active');
-                dot.addEventListener('click', () => moveToSlide(i));
-                dotsContainer.appendChild(dot);
-            }
+    const totalSlides = Math.ceil(cards.length / cardsPerView);
 
-            const dots = document.querySelectorAll('.carousel-dots span');
+    /* dots */
+    for(let i=0;i<totalSlides;i++){
+        const dot = document.createElement('span');
+        if(i===0) dot.classList.add('active');
+        dot.onclick = ()=> moveToSlide(i);
+        dotsContainer.appendChild(dot);
+    }
 
-            function moveToSlide(index) {
-                currentIndex = index;
-                track.style.transition = 'transform 0.8s ease-in-out';
-                track.style.transform = `translateX(-${index * 100}%)`;
+    const dots = document.querySelectorAll('.carousel-dots span');
 
-                dots.forEach(dot => dot.classList.remove('active'));
-                dots[index]?.classList.add('active');
-            }
+    function moveToSlide(index){
+        currentIndex = index;
+        track.style.transition = 'transform 0.8s ease-in-out';
+        track.style.transform = `translateX(-${index * 100}%)`;
 
-            function autoSlide() {
-                currentIndex++;
-                track.style.transition = 'transform 0.8s ease-in-out';
-                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        dots.forEach(d=>d.classList.remove('active'));
+        dots[index]?.classList.add('active');
+    }
 
-                if (currentIndex === totalSlides) {
-                    setTimeout(() => {
-                        track.style.transition = 'none';
-                        currentIndex = 0;
-                        track.style.transform = `translateX(0)`;
-                    }, 850);
-                }
+    function autoSlide(){
+        currentIndex++;
+        if(currentIndex >= totalSlides){
+            track.style.transition = 'none';
+            currentIndex = 0;
+            track.style.transform = 'translateX(0)';
+        } else {
+            track.style.transition = 'transform 0.8s ease-in-out';
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
 
-                dots.forEach(dot => dot.classList.remove('active'));
-                dots[currentIndex % totalSlides]?.classList.add('active');
-            }
+        dots.forEach(d=>d.classList.remove('active'));
+        dots[currentIndex]?.classList.add('active');
+    }
 
-            setInterval(autoSlide, 4000);
-        });
+    setInterval(autoSlide, 4000);
+});
+
 
 
         /* HERO SLIDER */
@@ -1938,5 +1999,6 @@
 
 
 </body>
+
 
 </html>
