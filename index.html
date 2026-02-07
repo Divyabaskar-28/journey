@@ -279,16 +279,19 @@
             width: 100%;
             max-width: 1400px;
             margin: 0 auto;
+            padding: 0 60px;
         }
 
         .carousel-track {
             display: flex;
             transition: transform 0.8s ease-in-out;
             gap: 20px;
+            padding: 10px 0;
         }
 
         .upcoming-card {
             flex: 0 0 calc(25% - 15px);
+            min-width: calc(25% - 15px);
             background: #fff;
             border-radius: 15px;
             overflow: hidden;
@@ -497,13 +500,28 @@
         .stress-free {
             padding: 70px 20px;
             background: #fff;
+            text-align: center;
         }
 
         .stress-free h2 {
             font-size: 36px;
             color: #003366;
             margin-bottom: 50px;
-            text-align: center;
+        }
+
+        .stress-container {
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+            overflow: hidden;
+            padding: 0 60px;
+        }
+
+        .stress-track {
+            display: flex;
+            transition: transform 0.8s ease-in-out;
+            gap: 20px;
+            padding: 10px 0;
         }
 
         .stress-card {
@@ -512,8 +530,8 @@
             border-radius: 15px;
             text-align: center;
             padding: 20px 15px;
-            margin: 0 10px;
-            flex: 0 0 calc(25% - 20px);
+            flex: 0 0 calc(25% - 15px);
+            min-width: calc(25% - 15px);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
             display: flex;
             flex-direction: column;
@@ -627,11 +645,19 @@
             color: #003366;
         }
 
+        .premium-container {
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+            overflow: hidden;
+            padding: 0 60px;
+        }
+
         .jh-track {
             display: flex;
-            gap: 25px;
             transition: transform 0.8s ease-in-out;
-            will-change: transform;
+            gap: 25px;
+            padding: 10px 0;
         }
 
         .jh-card {
@@ -1087,14 +1113,29 @@
         }
 
         /* ================= MOBILE RESPONSIVE ================= */
+        @media (max-width: 1400px) {
+            .carousel-container,
+            .stress-container,
+            .premium-container {
+                padding: 0 40px;
+            }
+        }
+
         @media (max-width: 1200px) {
             .upcoming-card,
             .stress-card {
                 flex: 0 0 calc(33.333% - 15px);
+                min-width: calc(33.333% - 15px);
             }
             
             .jh-card {
                 flex: 0 0 300px;
+            }
+            
+            .carousel-container,
+            .stress-container,
+            .premium-container {
+                padding: 0 30px;
             }
         }
 
@@ -1114,6 +1155,7 @@
             .upcoming-card,
             .stress-card {
                 flex: 0 0 calc(50% - 15px);
+                min-width: calc(50% - 15px);
             }
             
             .hero-slider {
@@ -1131,6 +1173,17 @@
             .gt-footer-top,
             .gt-footer-mid {
                 padding: 40px 30px;
+            }
+            
+            .carousel-container,
+            .stress-container,
+            .premium-container {
+                padding: 0 20px;
+            }
+            
+            .stress-arrow,
+            .stress-arrow.right {
+                display: none;
             }
         }
 
@@ -1184,7 +1237,8 @@
             .upcoming-packages,
             .popular-packages,
             .why-choose,
-            .jh-premium {
+            .jh-premium,
+            .stress-free {
                 padding: 40px 20px;
             }
             
@@ -1196,6 +1250,7 @@
             .upcoming-card,
             .stress-card {
                 flex: 0 0 100%;
+                min-width: 100%;
                 margin: 0;
             }
             
@@ -1308,6 +1363,12 @@
                 padding: 8px 15px;
                 font-size: 13px;
             }
+            
+            .carousel-container,
+            .stress-container,
+            .premium-container {
+                padding: 0 15px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -1360,10 +1421,6 @@
             
             .jh-info h3 {
                 font-size: 16px;
-            }
-            
-            .stress-arrow {
-                display: none;
             }
             
             .contact-form form {
@@ -1487,6 +1544,43 @@
             }
         }
 
+        /* Carousel Container Fix */
+        .carousel-container,
+        .stress-container,
+        .premium-container {
+            overflow: visible;
+        }
+
+        /* Hide arrows on mobile */
+        @media (max-width: 768px) {
+            .arrow,
+            .stress-arrow {
+                display: none;
+            }
+            
+            .carousel-track,
+            .stress-track,
+            .jh-track {
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+            }
+            
+            .carousel-track::-webkit-scrollbar,
+            .stress-track::-webkit-scrollbar,
+            .jh-track::-webkit-scrollbar {
+                display: none;
+            }
+            
+            .upcoming-card,
+            .stress-card,
+            .jh-card {
+                scroll-snap-align: start;
+            }
+        }
+
     </style>
 </head>
 
@@ -1582,7 +1676,7 @@
     <section class="upcoming-packages">
         <h2>Upcoming Holiday Packages</h2>
 
-        <div class="carousel-container" style="margin-top:40px;">
+        <div class="carousel-container">
             <div class="carousel-track" id="upcomingTrack">
                 <div class="upcoming-card">
                     <img src="./Images/up3.jpg" alt="Tawang Bike Trip">
@@ -1698,10 +1792,10 @@
     <section class="stress-free">
         <h2>Stress-Free Holidays with Journey Holidays</h2>
 
-        <div class="carousel-container" style="position:relative; max-width:1400px; margin:0 auto;">
+        <div class="stress-container">
             <div class="stress-arrow left" onclick="stressPrev()">❮</div>
             <div class="stress-arrow right" onclick="stressNext()">❯</div>
-            <div class="carousel-track" id="stressTrack">
+            <div class="stress-track" id="stressTrack">
                 <!-- Card 1 -->
                 <div class="stress-card">
                     <img src="./Images/stress1.jpg" alt="Zero Processing Fee">
@@ -1813,7 +1907,7 @@
     <section class="jh-premium">
         <h2>Premium Group Tours</h2>
 
-        <div class="carousel-container" style="position:relative; max-width:1400px; margin:0 auto;">
+        <div class="premium-container">
             <div class="stress-arrow left" onclick="premiumPrev()">❮</div>
             <div class="stress-arrow right" onclick="premiumNext()">❯</div>
 
@@ -2069,7 +2163,7 @@
             heroInterval = setInterval(nextSlide, 5000);
         });
 
-        // UPCOMING PACKAGES CAROUSEL
+        // UPCOMING PACKAGES CAROUSEL - Fixed
         const upcomingTrack = document.getElementById('upcomingTrack');
         const upcomingCards = Array.from(document.querySelectorAll('.upcoming-card'));
         const upcomingDots = document.getElementById('upcomingDots');
@@ -2108,9 +2202,10 @@
 
         function moveToUpcomingSlide(index, cardsPerView) {
             upcomingIndex = index;
-            const trackWidth = upcomingTrack.offsetWidth;
+            const trackWidth = upcomingTrack.parentElement.offsetWidth;
             const cardWidth = trackWidth / cardsPerView;
-            upcomingTrack.style.transform = `translateX(-${index * cardWidth * cardsPerView}px)`;
+            const gap = 20;
+            upcomingTrack.style.transform = `translateX(-${index * (cardWidth * cardsPerView + gap)}px)`;
             
             // Update dots
             const dots = document.querySelectorAll('#upcomingDots span');
@@ -2119,7 +2214,7 @@
         }
 
         // Auto slide for upcoming packages
-        setInterval(() => {
+        let upcomingInterval = setInterval(() => {
             const isMobile = window.innerWidth <= 768;
             const isTablet = window.innerWidth <= 992;
             let cardsPerView;
@@ -2137,7 +2232,7 @@
             moveToUpcomingSlide(upcomingIndex, cardsPerView);
         }, 4000);
 
-        // STRESS FREE CAROUSEL
+        // STRESS FREE CAROUSEL - Fixed
         const stressTrack = document.getElementById('stressTrack');
         const stressCards = Array.from(document.querySelectorAll('.stress-card'));
         let stressIndex = 0;
@@ -2155,14 +2250,9 @@
                 cardsPerView = 4;
             }
             
-            stressIndex++;
-            if (stressIndex > stressCards.length - cardsPerView) {
-                stressIndex = 0;
-            }
-            
-            const trackWidth = stressTrack.offsetWidth;
-            const cardWidth = trackWidth / cardsPerView;
-            stressTrack.style.transform = `translateX(-${stressIndex * cardWidth}px)`;
+            const totalSlides = Math.ceil(stressCards.length / cardsPerView);
+            stressIndex = (stressIndex + 1) % totalSlides;
+            updateStressCarousel(cardsPerView);
         }
 
         function stressPrev() {
@@ -2178,50 +2268,71 @@
                 cardsPerView = 4;
             }
             
-            stressIndex--;
-            if (stressIndex < 0) {
-                stressIndex = stressCards.length - cardsPerView;
-            }
-            
-            const trackWidth = stressTrack.offsetWidth;
+            const totalSlides = Math.ceil(stressCards.length / cardsPerView);
+            stressIndex = (stressIndex - 1 + totalSlides) % totalSlides;
+            updateStressCarousel(cardsPerView);
+        }
+
+        function updateStressCarousel(cardsPerView) {
+            const trackWidth = stressTrack.parentElement.offsetWidth;
             const cardWidth = trackWidth / cardsPerView;
-            stressTrack.style.transform = `translateX(-${stressIndex * cardWidth}px)`;
+            const gap = 20;
+            stressTrack.style.transform = `translateX(-${stressIndex * (cardWidth * cardsPerView + gap)}px)`;
         }
 
         // Auto slide for stress free
-        setInterval(stressNext, 4000);
+        let stressInterval = setInterval(stressNext, 4000);
 
-        // PREMIUM GROUP TOURS CAROUSEL
+        // PREMIUM GROUP TOURS CAROUSEL - Fixed
         const premiumTrack = document.getElementById('premiumTrack');
         const premiumCards = Array.from(document.querySelectorAll('.jh-card'));
         let premiumIndex = 0;
 
         function premiumNext() {
             const isMobile = window.innerWidth <= 768;
-            const cardWidth = isMobile ? 280 : 260;
+            const isTablet = window.innerWidth <= 992;
+            let cardsPerView;
             
-            premiumIndex++;
-            if (premiumIndex > premiumCards.length - 1) {
-                premiumIndex = 0;
+            if (isMobile) {
+                cardsPerView = 1;
+            } else if (isTablet) {
+                cardsPerView = 2;
+            } else {
+                cardsPerView = 4;
             }
             
-            premiumTrack.style.transform = `translateX(-${premiumIndex * cardWidth}px)`;
+            const totalSlides = Math.ceil(premiumCards.length / cardsPerView);
+            premiumIndex = (premiumIndex + 1) % totalSlides;
+            updatePremiumCarousel(cardsPerView);
         }
 
         function premiumPrev() {
             const isMobile = window.innerWidth <= 768;
-            const cardWidth = isMobile ? 280 : 260;
+            const isTablet = window.innerWidth <= 992;
+            let cardsPerView;
             
-            premiumIndex--;
-            if (premiumIndex < 0) {
-                premiumIndex = premiumCards.length - 1;
+            if (isMobile) {
+                cardsPerView = 1;
+            } else if (isTablet) {
+                cardsPerView = 2;
+            } else {
+                cardsPerView = 4;
             }
             
-            premiumTrack.style.transform = `translateX(-${premiumIndex * cardWidth}px)`;
+            const totalSlides = Math.ceil(premiumCards.length / cardsPerView);
+            premiumIndex = (premiumIndex - 1 + totalSlides) % totalSlides;
+            updatePremiumCarousel(cardsPerView);
+        }
+
+        function updatePremiumCarousel(cardsPerView) {
+            const trackWidth = premiumTrack.parentElement.offsetWidth;
+            const cardWidth = trackWidth / cardsPerView;
+            const gap = 25;
+            premiumTrack.style.transform = `translateX(-${premiumIndex * (cardWidth * cardsPerView + gap)}px)`;
         }
 
         // Auto slide for premium tours
-        setInterval(premiumNext, 4000);
+        let premiumInterval = setInterval(premiumNext, 4000);
 
         // EXPERIENCE TESTIMONIALS
         const experiences = [
@@ -2304,22 +2415,120 @@
 
         whyCards.forEach(card => whyObserver.observe(card));
 
-        // Initialize carousels on load
-        window.addEventListener('load', () => {
+        // Initialize carousels on load and resize
+        function initAllCarousels() {
             initUpcomingCarousel();
-            // Trigger initial positions
-            stressNext();
-            premiumNext();
-        });
+            // Set initial positions for other carousels
+            updateStressCarousel(window.innerWidth <= 768 ? 1 : window.innerWidth <= 992 ? 2 : 4);
+            updatePremiumCarousel(window.innerWidth <= 768 ? 1 : window.innerWidth <= 992 ? 2 : 4);
+        }
 
-        // Reinitialize on resize
-        window.addEventListener('resize', initUpcomingCarousel);
+        window.addEventListener('load', initAllCarousels);
+        window.addEventListener('resize', initAllCarousels);
+
+        // Pause auto slides on hover
+        const carousels = document.querySelectorAll('.carousel-container, .stress-container, .premium-container');
+        carousels.forEach(container => {
+            container.addEventListener('mouseenter', () => {
+                clearInterval(upcomingInterval);
+                clearInterval(stressInterval);
+                clearInterval(premiumInterval);
+            });
+            
+            container.addEventListener('mouseleave', () => {
+                upcomingInterval = setInterval(() => {
+                    const isMobile = window.innerWidth <= 768;
+                    const isTablet = window.innerWidth <= 992;
+                    let cardsPerView;
+                    
+                    if (isMobile) {
+                        cardsPerView = 1;
+                    } else if (isTablet) {
+                        cardsPerView = 2;
+                    } else {
+                        cardsPerView = 4;
+                    }
+                    
+                    const totalSlides = Math.ceil(upcomingCards.length / cardsPerView);
+                    upcomingIndex = (upcomingIndex + 1) % totalSlides;
+                    moveToUpcomingSlide(upcomingIndex, cardsPerView);
+                }, 4000);
+                
+                stressInterval = setInterval(stressNext, 4000);
+                premiumInterval = setInterval(premiumNext, 4000);
+            });
+        });
 
         // Prevent form submission for demo
         document.querySelector('.contact-form form').addEventListener('submit', function(e) {
             e.preventDefault();
             alert('Thank you for your enquiry! We will contact you soon.');
             this.reset();
+        });
+
+        // Touch/swipe support for mobile carousels
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        function handleTouchStart(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        }
+
+        function handleTouchEnd(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            
+            if (touchStartX - touchEndX > swipeThreshold) {
+                // Swipe left - next
+                stressNext();
+                premiumNext();
+                const isMobile = window.innerWidth <= 768;
+                const isTablet = window.innerWidth <= 992;
+                let cardsPerView;
+                
+                if (isMobile) {
+                    cardsPerView = 1;
+                } else if (isTablet) {
+                    cardsPerView = 2;
+                } else {
+                    cardsPerView = 4;
+                }
+                
+                const totalSlides = Math.ceil(upcomingCards.length / cardsPerView);
+                upcomingIndex = (upcomingIndex + 1) % totalSlides;
+                moveToUpcomingSlide(upcomingIndex, cardsPerView);
+            }
+            
+            if (touchEndX - touchStartX > swipeThreshold) {
+                // Swipe right - previous
+                stressPrev();
+                premiumPrev();
+                const isMobile = window.innerWidth <= 768;
+                const isTablet = window.innerWidth <= 992;
+                let cardsPerView;
+                
+                if (isMobile) {
+                    cardsPerView = 1;
+                } else if (isTablet) {
+                    cardsPerView = 2;
+                } else {
+                    cardsPerView = 4;
+                }
+                
+                const totalSlides = Math.ceil(upcomingCards.length / cardsPerView);
+                upcomingIndex = (upcomingIndex - 1 + totalSlides) % totalSlides;
+                moveToUpcomingSlide(upcomingIndex, cardsPerView);
+            }
+        }
+
+        // Add touch events to carousels
+        carousels.forEach(container => {
+            container.addEventListener('touchstart', handleTouchStart, false);
+            container.addEventListener('touchend', handleTouchEnd, false);
         });
     </script>
 
