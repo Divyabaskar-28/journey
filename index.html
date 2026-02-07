@@ -7,6 +7,7 @@
     <title>Journey Holidays</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
         * {
@@ -19,6 +20,7 @@
         body {
             background: #f5f5f5;
             padding-top: 90px;
+            overflow-x: hidden;
         }
 
         /* ================= HEADER ================= */
@@ -34,6 +36,7 @@
             left: 0;
             width: 100%;
             z-index: 999;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
         }
 
         .logo {
@@ -52,7 +55,8 @@
         nav {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
+            flex-wrap: nowrap;
         }
 
         nav a {
@@ -60,10 +64,13 @@
             color: white;
             font-weight: 500;
             padding: 8px 12px;
+            white-space: nowrap;
+            transition: all 0.3s ease;
         }
 
         nav a:hover {
             color: #ffd700;
+            transform: translateY(-2px);
         }
 
         .dropdown {
@@ -75,19 +82,31 @@
             position: absolute;
             top: 100%;
             left: 0;
-            background-color: #e0f0ff;
-            min-width: 160px;
+            background-color: #ffffff;
+            min-width: 200px;
             border: 1px solid #007bff;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            padding: 5px 0;
         }
 
         .dropdown-content a {
             color: #007bff;
-            padding: 10px;
+            padding: 12px 20px;
             display: block;
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-content a:last-child {
+            border-bottom: none;
         }
 
         .dropdown-content a:hover {
-            background-color: #cce5ff;
+            background-color: #e8f4ff;
+            color: #0056b3;
+            padding-left: 25px;
         }
 
         .dropdown:hover .dropdown-content {
@@ -95,114 +114,64 @@
         }
 
         .call-btn {
-    background-color: #0056b3;
-    padding: 10px 16px;
-    font-weight: bold;
-    border-radius: 3px;
-    color: white;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    white-space: nowrap;
-}
-
-@media (max-width: 480px) {
-    .call-btn {
-        font-size: 11px;
-        padding: 6px 8px;
-    }
-}
-
+            background-color: #0056b3;
+            padding: 10px 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            color: white;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 86, 179, 0.2);
+        }
 
         .call-btn:hover {
             background-color: #003f7f;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 86, 179, 0.3);
         }
 
-        .upcoming-packages {
-            background: #e9f8e9;
-            padding: 70px 60px;
-            text-align: center;
+        /* ================= MOBILE MENU ================= */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
         }
 
-        .carousel-container {
-            overflow: hidden;
-            position: relative;
-        }
-
-        .carousel-track {
-            display: flex;
-            transition: transform 0.8s ease-in-out;
-        }
-
-        .upcoming-card {
-            min-width: 25%;
-              flex-shrink: 0;
-            background: #fff;
-            margin: 0 10px;
-            border-radius: 10px;
-            overflow: hidden;
-            text-align: left;
-            padding-bottom: 15px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-        }
-        @media (max-width: 768px) {
-    .upcoming-card {
-        min-width: 100%;
-        margin: 0;
-    }
-}
-
-        .upcoming-card img {
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 90px;
+            left: 0;
             width: 100%;
-            height: 180px;
-            object-fit: cover;
+            background: #007bff;
+            padding: 20px;
+            z-index: 998;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-nav.active {
             display: block;
         }
 
-
-        .upcoming-card h4 {
+        .mobile-nav a {
+            display: block;
+            color: white;
+            padding: 12px 15px;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 16px;
-            margin: 12px;
         }
 
-        .upcoming-card p {
-            margin: 0 12px;
-            color: #2e7d32;
-            font-weight: 600;
+        .mobile-nav a:last-child {
+            border-bottom: none;
         }
-
-        /* DOTS */
-        .carousel-dots {
-            margin-top: 25px;
-        }
-
-        .carousel-dots span {
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            margin: 0 6px;
-            background: #bbb;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-
-        .carousel-dots span.active {
-            background: #2e7d32;
-        }
-
-        /* MOBILE */
-        @media(max-width: 992px) {
-            .upcoming-card {
-                min-width: 50%;
-            }
-        }
-
-        @media(max-width: 576px) {
-            .upcoming-card {
-                min-width: 100%;
-            }
-        }
-
 
         /* ================= HERO SLIDER ================= */
         .hero-slider {
@@ -242,6 +211,8 @@
             max-width: 800px;
             opacity: 0;
             transition: all 1s ease;
+            padding: 0 20px;
+            width: 90%;
         }
 
         .slide.active .content {
@@ -252,12 +223,15 @@
         .content h1 {
             font-size: 64px;
             font-weight: 600;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .content p {
             margin-top: 18px;
             font-size: 20px;
             line-height: 1.6;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         .arrow {
@@ -269,6 +243,19 @@
             cursor: pointer;
             z-index: 10;
             user-select: none;
+            background: rgba(0, 0, 0, 0.3);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .arrow:hover {
+            background: rgba(0, 0, 0, 0.6);
+            transform: translateY(-50%) scale(1.1);
         }
 
         .arrow.left {
@@ -279,12 +266,96 @@
             right: 30px;
         }
 
+        /* ================= UPCOMING PACKAGES ================= */
+        .upcoming-packages {
+            background: #e9f8e9;
+            padding: 70px 60px;
+            text-align: center;
+        }
+
+        .carousel-container {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.8s ease-in-out;
+            gap: 20px;
+        }
+
+        .upcoming-card {
+            flex: 0 0 calc(25% - 15px);
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            text-align: left;
+            padding-bottom: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .upcoming-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .upcoming-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .upcoming-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .upcoming-card h4 {
+            font-size: 16px;
+            margin: 12px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .upcoming-card p {
+            margin: 0 12px;
+            color: #2e7d32;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        /* DOTS */
+        .carousel-dots {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .carousel-dots span {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background: #bbb;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dots span.active {
+            background: #2e7d32;
+            transform: scale(1.2);
+        }
+
         /* ================= POPULAR PACKAGES ================= */
         .popular-packages {
             padding: 70px 60px;
             background: #fff;
-
-            /* smooth reveal */
             opacity: 0;
             transform: translateY(50px);
             transition: opacity 0.9s ease, transform 0.9s ease;
@@ -300,12 +371,15 @@
             text-align: center;
             font-size: 36px;
             margin-bottom: 40px;
+            color: #003366;
         }
 
         .package-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 25px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .package-card {
@@ -314,7 +388,6 @@
             border-radius: 12px;
             overflow: hidden;
             text-decoration: none;
-
             opacity: 0;
             transform: translateY(30px);
             transition: opacity 0.7s ease, transform 0.7s ease;
@@ -348,78 +421,21 @@
             color: white;
         }
 
+        .package-overlay h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
         .package-overlay span {
             background: #ffc107;
             color: #000;
             padding: 6px 12px;
             font-size: 14px;
-            border-radius: 4px;
+            border-radius: 20px;
             width: fit-content;
+            font-weight: 600;
         }
-
-       @media (max-width: 768px) {
-
-    body {
-        padding-top: 70px;
-    }
-
-    header {
-        padding: 10px 12px;
-    }
-
-    .logo img {
-        height: 42px;
-    }
-
-    nav {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        overflow-x: auto;
-        scrollbar-width: none;
-    }
-
-    nav::-webkit-scrollbar {
-        display: none;
-    }
-
-    nav a {
-        font-size: 11px;
-        padding: 6px 8px;
-        white-space: nowrap;
-    }
-
-    /* only call button visible in very small screens */
-}
-
-@media (max-width: 480px) {
-    nav a:not(.call-btn) {
-        display: none;
-    }
-}
-            .call-btn {
-                font-size: 12px;
-                padding: 8px 10px;
-                min-width: max-content;
-                /* 🔥 FINAL LOCK */
-            }
-        
-
-
-
-
-        .content h1 {
-            font-size: 36px;
-        }
-
-        .content p {
-            font-size: 16px;
-        }
-
-        .popular-packages {
-            padding: 40px 20px;
-        }
-
 
         /* ================= WHY CHOOSE US ================= */
         .why-choose {
@@ -431,6 +447,8 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .why-card {
@@ -439,10 +457,15 @@
             text-align: center;
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
-
             opacity: 0;
             transform: translateY(40px);
             transition: opacity 0.8s ease, transform 0.8s ease;
+            transition: all 0.3s ease;
+        }
+
+        .why-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
         }
 
         .why-card.reveal {
@@ -454,12 +477,14 @@
             font-size: 60px;
             color: #ffc107;
             margin-bottom: 20px;
+            display: inline-block;
         }
 
         .why-card h3 {
             font-size: 24px;
             margin-bottom: 12px;
             font-weight: 600;
+            color: #003366;
         }
 
         .why-card p {
@@ -468,89 +493,38 @@
             color: #555;
         }
 
-        /* Mobile */
-        @media(max-width:768px) {
-            .why-choose {
-                padding: 50px 20px;
-            }
-        }
-
-        .call-btn {
-            background-color: #0056b3;
-            padding: 10px 16px;
-            font-weight: bold;
-            border-radius: 3px;
-            color: white;
-            text-decoration: none;
-
-            display: flex;
-            /* 🔥 important */
-            align-items: center;
-            white-space: nowrap;
-            /* 🔥 +91 break aagaadhu */
-        }
-
-        @media(max-width:360px) {
-            nav a:not(.call-btn) {
-                display: none;
-                /* hide menu links */
-            }
-
-            .call-btn {
-                font-size: 11px;
-                padding: 6px 8px;
-            }
-
-            .logo img {
-                height: 45px;
-            }
-        }
-
-        @media(max-width:576px) {
-            .content h1 {
-                font-size: 28px;
-                line-height: 1.2;
-            }
-
-            .content p {
-                font-size: 14px;
-            }
-        }
-
-        .carousel-track {
-            scroll-behavior: smooth;
-            will-change: transform;
-        }
-
+        /* ================= STRESS FREE ================= */
         .stress-free {
             padding: 70px 20px;
             background: #fff;
-            /* White background */
         }
 
         .stress-free h2 {
             font-size: 36px;
-            color: #333;
+            color: #003366;
             margin-bottom: 50px;
+            text-align: center;
         }
 
-        /* Stress cards */
         .stress-card {
             background: #fff;
-            /* White card background */
             color: #000;
-            border-radius: 12px;
+            border-radius: 15px;
             text-align: center;
             padding: 20px 15px;
             margin: 0 10px;
-            min-width: 25%;
+            flex: 0 0 calc(25% - 20px);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-
             transition: transform 0.3s ease;
-            /* smooth hover effect */
+            border: 1px solid #f0f0f0;
+        }
+
+        .stress-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
         }
 
         .stress-card img {
@@ -558,6 +532,7 @@
             height: 180px;
             object-fit: cover;
             border-radius: 12px;
+            margin-bottom: 15px;
         }
 
         .stress-card h4 {
@@ -565,13 +540,13 @@
             font-size: 16px;
             font-weight: 600;
             color: #007bff;
-            /* Blue titles */
         }
 
         .stress-card p {
             margin-bottom: 12px;
             font-weight: 500;
             color: #333;
+            font-size: 14px;
         }
 
         .stress-card .features {
@@ -579,32 +554,29 @@
             color: #555;
             text-align: left;
             margin: 10px 0;
+            padding: 0 10px;
         }
 
         .stress-card .features span {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            line-height: 1.4;
         }
 
         .stress-card .call-btn {
             margin-top: auto;
             background: #007bff;
-            /* Blue button */
             color: #fff;
             text-decoration: none;
             padding: 10px 16px;
             font-weight: bold;
-            border-radius: 3px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
         }
 
-        /* Smooth scrolling for carousel */
-        .stress-free .carousel-track {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-            /* smooth movement */
-            scroll-behavior: smooth;
-            /* smooth scrolling */
-            will-change: transform;
+        .stress-card .call-btn:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
         }
 
         .stress-arrow {
@@ -624,41 +596,24 @@
             justify-content: center;
             box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
             user-select: none;
+            transition: all 0.3s ease;
         }
-
-        .stress-arrow.left {
-            left: 10px;
-            /* ❌ -20px illa */
-        }
-
-        .stress-arrow.right {
-            right: 10px;
-            /* ❌ -20px illa */
-        }
-
 
         .stress-arrow:hover {
             background: #007bff;
             color: #fff;
+            transform: translateY(-50%) scale(1.1);
         }
 
-      @media (max-width: 768px) {
+        .stress-arrow.left {
+            left: 10px;
+        }
 
-    .stress-card {
-        min-width: 100%;
-        margin: 0;
-    }
+        .stress-arrow.right {
+            right: 10px;
+        }
 
-    .stress-free .carousel-track {
-        gap: 0;
-    }
-
-    .stress-card img {
-        height: 200px;
-    }
-}
-
-
+        /* ================= PREMIUM SECTION ================= */
         .jh-premium {
             padding: 80px 60px;
             background: #fff;
@@ -672,18 +627,26 @@
             color: #003366;
         }
 
-        .jh-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        .jh-track {
+            display: flex;
             gap: 25px;
+            transition: transform 0.8s ease-in-out;
+            will-change: transform;
         }
 
         .jh-card {
-            position: relative;
+            flex: 0 0 260px;
             height: 360px;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .jh-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
 
         .jh-card img {
@@ -702,7 +665,7 @@
             bottom: 0;
             width: 100%;
             padding: 18px;
-            background: linear-gradient(to top, #0056b3, #1e90ff);
+            background: linear-gradient(to top, rgba(0, 86, 179, 0.9), rgba(30, 144, 255, 0.7));
             color: #fff;
             text-align: center;
         }
@@ -712,12 +675,14 @@
             font-weight: 600;
             display: block;
             margin-bottom: 6px;
+            opacity: 0.9;
         }
 
         .jh-info h3 {
             font-size: 18px;
             font-weight: 700;
             line-height: 1.3;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         .jh-btn {
@@ -728,49 +693,24 @@
             padding: 12px 32px;
             font-weight: 700;
             text-decoration: none;
-            border-radius: 4px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 15px rgba(0, 123, 255, 0.3);
         }
 
         .jh-btn:hover {
             background: #0056b3;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 123, 255, 0.4);
         }
-
-        .jh-track {
-            display: flex;
-            gap: 25px;
-            transition: transform 0.8s ease-in-out;
-            will-change: transform;
-        }
-
-        .jh-card {
-            min-width: 260px;
-            /* 🔥 carousel width */
-            height: 360px;
-            flex-shrink: 0;
-        }
-
-        /* mobile */
-     @media (max-width: 768px) {
-    .jh-card {
-        min-width: 100%;
-        height: 300px;
-    }
-
-    .jh-info h3 {
-        font-size: 16px;
-    }
-}
-
 
         /* ================= EXPERIENCE SECTION ================= */
-
         .experience-section {
             position: relative;
             height: 90vh;
             overflow: hidden;
         }
 
-        /* Video */
         .bg-video {
             position: absolute;
             inset: 0;
@@ -779,15 +719,12 @@
             object-fit: cover;
         }
 
-        /* Overlay */
         .exp-overlay {
             position: absolute;
             inset: 0;
             background: rgba(173, 216, 230, 0.85);
-
         }
 
-        /* Layout */
         .exp-container {
             position: relative;
             z-index: 2;
@@ -796,9 +733,10 @@
             align-items: center;
             height: 100%;
             padding: 0 80px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
-        /* Text */
         .exp-text {
             max-width: 520px;
             color: #000;
@@ -808,30 +746,35 @@
             font-size: 13px;
             text-transform: uppercase;
             letter-spacing: 1px;
+            color: #007bff;
+            font-weight: 600;
         }
 
         .exp-text h2 {
             font-size: 40px;
             margin: 12px 0 20px;
+            color: #003366;
         }
 
         .exp-text p {
             font-size: 15px;
             line-height: 1.7;
             margin-bottom: 20px;
+            color: #333;
         }
 
         .exp-text h4 {
             font-size: 16px;
             font-weight: 600;
+            color: #007bff;
+            margin-bottom: 5px;
         }
 
         .exp-text span {
             font-size: 13px;
-            color: #333;
+            color: #666;
         }
 
-        /* Play button */
         .exp-video-btn {
             width: 80px;
             height: 80px;
@@ -842,11 +785,19 @@
             justify-content: center;
             font-size: 28px;
             cursor: pointer;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
         }
 
-        /* Dots */
+        .exp-video-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
         .exp-dots {
             margin-top: 30px;
+            display: flex;
+            gap: 10px;
         }
 
         .exp-dots .dot {
@@ -854,36 +805,18 @@
             height: 8px;
             background: #555;
             border-radius: 50%;
-            display: inline-block;
-            margin-right: 8px;
             cursor: pointer;
             opacity: 0.4;
+            transition: all 0.3s ease;
         }
 
         .exp-dots .dot.active {
             opacity: 1;
-        }
-
-        /* Mobile */
-        @media(max-width:768px) {
-            .exp-container {
-                flex-direction: column;
-                justify-content: center;
-                text-align: center;
-                padding: 20px;
-            }
-
-            .exp-video-btn {
-                margin-top: 30px;
-            }
-
-            .exp-text h2 {
-                font-size: 28px;
-            }
+            background: #007bff;
+            transform: scale(1.2);
         }
 
         /* ================= CONTACT SECTION ================= */
-
         .contact-section {
             background: #f7f7f7;
             padding: 80px 20px;
@@ -898,10 +831,10 @@
             align-items: center;
         }
 
-        /* LEFT */
         .contact-left h3 {
             font-size: 22px;
             margin-bottom: 30px;
+            color: #003366;
         }
 
         .contact-item {
@@ -913,28 +846,46 @@
             gap: 12px;
         }
 
-        /* RIGHT FORM */
+        .contact-item span {
+            font-weight: 500;
+        }
+
         .contact-form h3 {
             font-size: 22px;
             margin-bottom: 25px;
+            color: #003366;
         }
 
         .contact-form form {
             display: grid;
             grid-template-columns: 1fr;
             gap: 12px;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
         }
 
         .contact-form input {
-            padding: 10px;
-            border: 1px solid #ccc;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
             font-size: 14px;
             width: 100%;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-form input:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
         }
 
         .contact-form .captcha {
             font-size: 13px;
             margin-top: 10px;
+            font-weight: 500;
+            color: #333;
         }
 
         .contact-form button {
@@ -943,22 +894,18 @@
             padding: 12px;
             font-weight: bold;
             cursor: pointer;
+            color: white;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-size: 16px;
         }
 
         .contact-form button:hover {
-            background: #007bff;
-        }
-
-        /* MOBILE */
-        @media(max-width:768px) {
-            .contact-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
+            background: #0056b3;
+            transform: translateY(-2px);
         }
 
         /* ================= FLOATING ACTION BUTTONS ================= */
-
         .floating-actions {
             position: fixed;
             left: 15px;
@@ -969,7 +916,6 @@
             z-index: 9999;
         }
 
-        /* WhatsApp */
         .whatsapp-float {
             width: 55px;
             height: 55px;
@@ -979,13 +925,18 @@
             align-items: center;
             justify-content: center;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 25px rgba(37, 211, 102, 0.4);
         }
 
         .whatsapp-float img {
             width: 32px;
         }
 
-        /* Enquire */
         .enquire-float {
             background: #007bff;
             color: #fff;
@@ -996,22 +947,17 @@
             cursor: pointer;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
             letter-spacing: 1px;
+            transition: all 0.3s ease;
+            font-size: 14px;
         }
 
         .enquire-float:hover {
             background: #0056b3;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(0, 123, 255, 0.4);
         }
 
-        /* Mobile size */
-        @media(max-width:576px) {
-            .enquire-float {
-                padding: 8px 14px;
-                font-size: 12px;
-            }
-        }
-
-        /* ================= GT STYLE FOOTER ================= */
-
+        /* ================= FOOTER ================= */
         .gt-footer {
             background: #1a1a1a;
             color: #ddd;
@@ -1023,6 +969,8 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 60px;
             padding: 70px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .footer-col h4 {
@@ -1046,14 +994,17 @@
             color: #ccc;
         }
 
-        /* Branch list */
         .branch-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 6px 30px;
         }
 
-        /* Middle row */
+        .branch-grid span {
+            padding: 5px 0;
+            color: #ccc;
+        }
+
         .gt-footer-mid {
             border-top: 1px solid #333;
             border-bottom: 1px solid #333;
@@ -1061,10 +1012,14 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .gt-footer-mid small {
             color: #aaa;
+            display: block;
+            margin-bottom: 5px;
         }
 
         .gt-footer-mid h3 {
@@ -1073,7 +1028,6 @@
             color: #fff;
         }
 
-        /* Social */
         .social .icons {
             display: flex;
             gap: 15px;
@@ -1083,9 +1037,15 @@
         .social .icons span {
             font-size: 18px;
             cursor: pointer;
+            transition: all 0.3s ease;
+            color: #ccc;
         }
 
-        /* Bottom bar */
+        .social .icons span:hover {
+            color: #007bff;
+            transform: translateY(-3px);
+        }
+
         .gt-footer-bottom {
             background: #fff;
             color: #000;
@@ -1095,12 +1055,20 @@
             justify-content: space-between;
             flex-wrap: wrap;
             gap: 10px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .footer-links a {
             text-decoration: none;
             color: #000;
             font-size: 13px;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #007bff;
         }
 
         .footer-enquire {
@@ -1109,95 +1077,415 @@
             padding: 10px 22px;
             font-weight: 700;
             cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s ease;
         }
 
-        /* Mobile */
-        @media(max-width:900px) {
+        .footer-enquire:hover {
+            background: #e0a800;
+            transform: translateY(-2px);
+        }
 
+        /* ================= MOBILE RESPONSIVE ================= */
+        @media (max-width: 1200px) {
+            .upcoming-card,
+            .stress-card {
+                flex: 0 0 calc(33.333% - 15px);
+            }
+            
+            .jh-card {
+                flex: 0 0 300px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            header {
+                padding: 12px 20px;
+            }
+            
+            .desktop-nav {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .upcoming-card,
+            .stress-card {
+                flex: 0 0 calc(50% - 15px);
+            }
+            
+            .hero-slider {
+                height: 70vh;
+            }
+            
+            .content h1 {
+                font-size: 48px;
+            }
+            
+            .exp-container {
+                padding: 0 40px;
+            }
+            
             .gt-footer-top,
             .gt-footer-mid {
+                padding: 40px 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+            }
+            
+            header {
+                padding: 10px 15px;
+            }
+            
+            .logo img {
+                height: 45px;
+            }
+            
+            .logo {
+                font-size: 20px;
+            }
+            
+            .mobile-nav {
+                top: 70px;
+            }
+            
+            .hero-slider {
+                height: 60vh;
+            }
+            
+            .content h1 {
+                font-size: 36px;
+            }
+            
+            .content p {
+                font-size: 16px;
+            }
+            
+            .arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 30px;
+            }
+            
+            .arrow.left {
+                left: 15px;
+            }
+            
+            .arrow.right {
+                right: 15px;
+            }
+            
+            .upcoming-packages,
+            .popular-packages,
+            .why-choose,
+            .jh-premium {
+                padding: 40px 20px;
+            }
+            
+            section h2 {
+                font-size: 28px;
+                line-height: 1.3;
+            }
+            
+            .upcoming-card,
+            .stress-card {
+                flex: 0 0 100%;
+                margin: 0;
+            }
+            
+            .package-grid {
                 grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .package-card {
+                height: 220px;
+            }
+            
+            .why-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .why-card {
+                padding: 30px 20px;
+            }
+            
+            .stress-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 30px;
+            }
+            
+            .jh-card {
+                flex: 0 0 280px;
+                height: 320px;
+            }
+            
+            .exp-container {
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                padding: 30px 20px;
+            }
+            
+            .exp-text {
+                max-width: 100%;
+                margin-bottom: 30px;
+            }
+            
+            .exp-text h2 {
+                font-size: 28px;
+            }
+            
+            .exp-video-btn {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
                 text-align: center;
             }
-
-            .branch-grid {
-                grid-template-columns: 1fr;
+            
+            .contact-item {
+                justify-content: center;
             }
-
+            
+            .gt-footer-top {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 40px 20px;
+            }
+            
+            .gt-footer-mid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                padding: 30px 20px;
+                text-align: center;
+            }
+            
             .gt-footer-bottom {
                 flex-direction: column;
                 text-align: center;
+                gap: 15px;
+                padding: 20px;
             }
-        }
-@media (max-width: 768px) {
-    .footer-col h4::after {
-        margin: 10px auto 0;
-    }
-}
-
-        /* ===== GLOBAL SECTION HEADING COLOR ===== */
-        
-        section h2
-     {
-           color: #003366;
-            /* dark blue – premium look */
-            font-weight: 600;
-            font-size:36px;
-        }
-@media (max-width: 576px) {
-    section h2 {
-        font-size: 24px;
-        line-height: 1.3;
-        text-align: center;
-    }
-}
-
-        section {
-            padding-left: 20px;
-            padding-right: 20px;
-        }
-
-        @media (max-width: 480px) {
-            header {
-                flex-wrap: nowrap;
+            
+            .footer-links {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
             }
-
-            nav {
-                overflow-x: auto;
+            
+            .footer-links a {
+                margin: 5px 0;
+            }
+            
+            .floating-actions {
+                left: 10px;
+                bottom: 20px;
+            }
+            
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .whatsapp-float img {
+                width: 28px;
+            }
+            
+            .enquire-float {
+                padding: 8px 15px;
+                font-size: 13px;
             }
         }
 
         @media (max-width: 576px) {
             .hero-slider {
-                height: 70vh;
+                height: 50vh;
             }
-
+            
             .content h1 {
-                font-size: 26px;
+                font-size: 28px;
             }
-
+            
             .content p {
                 font-size: 14px;
+                margin-top: 10px;
+            }
+            
+            .logo img {
+                height: 40px;
+            }
+            
+            .logo {
+                font-size: 18px;
+            }
+            
+            .upcoming-card img,
+            .stress-card img {
+                height: 160px;
+            }
+            
+            .package-card {
+                height: 200px;
+            }
+            
+            .package-overlay h3 {
+                font-size: 18px;
+            }
+            
+            .why-icon {
+                font-size: 50px;
+            }
+            
+            .why-card h3 {
+                font-size: 20px;
+            }
+            
+            .jh-card {
+                flex: 0 0 250px;
+                height: 300px;
+            }
+            
+            .jh-info h3 {
+                font-size: 16px;
+            }
+            
+            .stress-arrow {
+                display: none;
+            }
+            
+            .contact-form form {
+                padding: 20px;
+            }
+            
+            .branch-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .floating-actions {
+                left: 10px;
+                bottom: 15px;
+            }
+            
+            .whatsapp-float {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .whatsapp-float img {
+                width: 25px;
+            }
+            
+            .enquire-float {
+                padding: 7px 12px;
+                font-size: 12px;
             }
         }
 
-        .upcoming-card {
-    min-width: 25%;
-    flex-shrink: 0;
-}
+        @media (max-width: 375px) {
+            .content h1 {
+                font-size: 24px;
+            }
+            
+            .content p {
+                font-size: 13px;
+            }
+            
+            .logo {
+                font-size: 16px;
+            }
+            
+            .logo img {
+                height: 35px;
+            }
+            
+            .upcoming-card h4,
+            .stress-card h4 {
+                font-size: 15px;
+            }
+            
+            .jh-card {
+                flex: 0 0 220px;
+                height: 280px;
+            }
+            
+            .contact-form input {
+                padding: 10px 12px;
+                font-size: 13px;
+            }
+            
+            .call-btn {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+        }
 
-@media (max-width: 992px) {
-    .upcoming-card {
-        min-width: 50%;
-    }
-}
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
 
-@media (max-width: 768px) {
-    .upcoming-card {
-        min-width: 100%;
-        margin: 0;
-    }
-}
+        /* Section spacing */
+        section {
+            margin-bottom: 20px;
+        }
+
+        /* Image loading optimization */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Touch-friendly buttons */
+        button,
+        .call-btn,
+        a {
+            -webkit-tap-highlight-color: transparent;
+            tap-highlight-color: transparent;
+        }
+
+        /* Prevent text selection on interactive elements */
+        .arrow,
+        .stress-arrow,
+        .carousel-dots span,
+        .exp-dots .dot {
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        /* iOS specific fixes */
+        @supports (-webkit-touch-callout: none) {
+            .hero-slider {
+                height: 85vh;
+            }
+            
+            .mobile-menu-btn,
+            .call-btn,
+            .enquire-float {
+                cursor: pointer;
+            }
+        }
+
+        /* Android specific fixes */
+        @media (-webkit-device-pixel-ratio: 2) {
+            .arrow,
+            .stress-arrow {
+                -webkit-font-smoothing: antialiased;
+            }
+        }
 
     </style>
 </head>
@@ -1206,11 +1494,13 @@
 
     <header>
         <div class="logo">
-            <img src="./Images/final logo.png" style="height:58px;">
+            <img src="./Images/final logo.png" alt="Journey Holidays Logo" style="height:58px;">
             <div>Journey<br><span>Holidays</span></div>
         </div>
 
-        <nav>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+
+        <nav class="desktop-nav">
             <a href="#">HOME</a>
             <div class="dropdown">
                 <a href="#">COMPANY</a>
@@ -1234,17 +1524,30 @@
             <a href="tel:+918344441997" class="call-btn">
                 +91&nbsp;8344441997
             </a>
-
         </nav>
     </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <a href="#">HOME</a>
+        <a href="#">COMPANY</a>
+        <a href="#">GROUP TOURS</a>
+        <a href="#">PACKAGES</a>
+        <a href="#">INDIA</a>
+        <a href="#">HONEYMOON</a>
+        <a href="#">WEDDING</a>
+        <a href="#">CONTACT</a>
+        <a href="tel:+918344441997" class="call-btn">
+            +91&nbsp;8344441997
+        </a>
+    </div>
 
     <div class="hero-slider">
         <div class="slide active" style="background-image:url('./Images/beach.jpg');">
             <div class="overlay"></div>
             <div class="content">
                 <h1>Explore the World with Journey Holidays</h1>
-                <p>From serene beaches to iconic landmarks, Journey Holidays crafts unforgettable travel experiences.
-                </p>
+                <p>From serene beaches to iconic landmarks, Journey Holidays crafts unforgettable travel experiences.</p>
             </div>
         </div>
 
@@ -1252,8 +1555,7 @@
             <div class="overlay"></div>
             <div class="content">
                 <h1>Explore the World with Journey Holidays</h1>
-                <p>From serene beaches to iconic landmarks, Journey Holidays crafts unforgettable travel experiences.
-                </p>
+                <p>From serene beaches to iconic landmarks, Journey Holidays crafts unforgettable travel experiences.</p>
             </div>
         </div>
 
@@ -1261,8 +1563,7 @@
             <div class="overlay"></div>
             <div class="content">
                 <h1>Explore the World with Journey Holidays</h1>
-                <p>From serene beaches to iconic landmarks, Journey Holidays crafts unforgettable travel experiences.
-                </p>
+                <p>From serene beaches to iconic landmarks, Journey Holidays crafts unforgettable travel experiences.</p>
             </div>
         </div>
 
@@ -1270,67 +1571,66 @@
             <div class="overlay"></div>
             <div class="content">
                 <h1>Explore the World with Journey Holidays</h1>
-                <p>From serene beaches to iconic landmarks, Journey Holidays crafts unforgettable travel experiences.
-                </p>
+                <p>From serene beaches to iconic landmarks, Journey Holidays crafts unforgettable travel experiences.</p>
             </div>
         </div>
 
         <div class="arrow left" onclick="prevSlide()">❮</div>
         <div class="arrow right" onclick="nextSlide()">❯</div>
     </div>
+
     <section class="upcoming-packages">
         <h2>Upcoming Holiday Packages</h2>
 
         <div class="carousel-container" style="margin-top:40px;">
-            <div class="carousel-track">
+            <div class="carousel-track" id="upcomingTrack">
                 <div class="upcoming-card">
-                    <img src="./Images/up3.jpg">
+                    <img src="./Images/up3.jpg" alt="Tawang Bike Trip">
                     <h4>Tawang Bike Trip 2026</h4>
                     <p>₹30,499</p>
                 </div>
 
                 <div class="upcoming-card">
-                    <img src="./Images/up2.jpg">
+                    <img src="./Images/up2.jpg" alt="Winter Spiti Valley">
                     <h4>Winter Spiti Valley Tour</h4>
                     <p>₹19,490</p>
                 </div>
 
                 <div class="upcoming-card">
-                    <img src="./Images/up1.jpg">
+                    <img src="./Images/up1.jpg" alt="Meghalaya & Kaziranga">
                     <h4>Meghalaya & Kaziranga</h4>
                     <p>₹25,500</p>
                 </div>
 
                 <div class="upcoming-card">
-                    <img src="./Images/up4.jpg">
+                    <img src="./Images/up4.jpg" alt="Meghalaya Adventure">
                     <h4>Meghalaya Adventure</h4>
                     <p>₹19,900</p>
                 </div>
 
                 <div class="upcoming-card">
-                    <img src="./Images/up5.jpg">
+                    <img src="./Images/up5.jpg" alt="Chadar Trek">
                     <h4>Chadar Trek 2026</h4>
                     <p>₹19,900</p>
                 </div>
 
                 <div class="upcoming-card">
-                    <img src="./Images/up6.jpg">
+                    <img src="./Images/up6.jpg" alt="Snow Himalayan Trek">
                     <h4>Snow Himalayan Trek</h4>
                     <p>₹22,500</p>
                 </div>
             </div>
         </div>
 
-        <div class="carousel-dots"></div>
+        <div class="carousel-dots" id="upcomingDots"></div>
     </section>
-
 
     <section class="popular-packages">
         <h2>Popular Tour Packages</h2>
 
         <div class="package-grid">
             <a href="#" class="package-card">
-                <img src="./Images/india.jpg">
+                <img src="./Images/india.jpg" alt="India Tours">
                 <div class="package-overlay">
                     <h3>India Tour Packages</h3>
                     <span>98 Tours</span>
@@ -1338,7 +1638,7 @@
             </a>
 
             <a href="#" class="package-card">
-                <img src="./Images/international.jpg">
+                <img src="./Images/international.jpg" alt="International Tours">
                 <div class="package-overlay">
                     <h3>International Tour Packages</h3>
                     <span>362 Tours</span>
@@ -1346,7 +1646,7 @@
             </a>
 
             <a href="#" class="package-card">
-                <img src="./Images/honeymoon.jpg">
+                <img src="./Images/honeymoon.jpg" alt="Honeymoon Packages">
                 <div class="package-overlay">
                     <h3>Honeymoon Packages</h3>
                     <span>45 Tours</span>
@@ -1354,7 +1654,7 @@
             </a>
 
             <a href="#" class="package-card">
-                <img src="./Images/europe.jpg">
+                <img src="./Images/europe.jpg" alt="Europe Tours">
                 <div class="package-overlay">
                     <h3>Europe Tour Packages</h3>
                     <span>144 Tours</span>
@@ -1364,8 +1664,8 @@
     </section>
 
     <section class="why-choose">
+        <h2 style="text-align:center; margin-bottom:40px;color: #003366;">Why Choose Journey Holidays</h2>
         <div class="why-grid">
-
             <div class="why-card">
                 <div class="why-icon">👤</div>
                 <h3>50,000+ Abroad Trips</h3>
@@ -1392,17 +1692,16 @@
                     satisfaction and long-term trust.
                 </p>
             </div>
-
         </div>
     </section>
 
     <section class="stress-free">
-        <h2 style="text-align:center; margin-bottom:40px;color: #003366;">Stress-Free Holidays with Journey Holidays</h2>
+        <h2>Stress-Free Holidays with Journey Holidays</h2>
 
-        <div class="carousel-container" style="margin:0 auto; max-width:1200px;">
+        <div class="carousel-container" style="position:relative; max-width:1400px; margin:0 auto;">
             <div class="stress-arrow left" onclick="stressPrev()">❮</div>
             <div class="stress-arrow right" onclick="stressNext()">❯</div>
-            <div class="carousel-track">
+            <div class="carousel-track" id="stressTrack">
                 <!-- Card 1 -->
                 <div class="stress-card">
                     <img src="./Images/stress1.jpg" alt="Zero Processing Fee">
@@ -1429,8 +1728,7 @@
 
                 <!-- Card 3 -->
                 <div class="stress-card">
-                    <img src="./Images/stress3.jpg" alt="No Cost EMI" style="      /* full image visible */
-    object-position: top center;">
+                    <img src="./Images/stress3.jpg" alt="No Cost EMI" style="object-position: top center;">
                     <h4>NO COST EMI HOLIDAYS WITH Journey Holidays</h4>
                     <p>Stress-Free Vacation with Journey Holidays</p>
                     <div class="features">
@@ -1478,32 +1776,27 @@
             </div>
         </div>
     </section>
-    <section class="experience-section">
 
-        <!-- Background Video -->
+    <section class="experience-section">
         <video autoplay muted loop playsinline class="bg-video">
             <source src="./Images/experience.mp4" type="video/mp4">
         </video>
 
-        <!-- Overlay -->
         <div class="exp-overlay"></div>
 
-        <!-- Content -->
         <div class="exp-container">
-
             <div class="exp-text">
                 <span class="small-title">Look Inside</span>
                 <h2>Our Holiday Packages<br>Experiences</h2>
 
                 <p id="exp-desc">
-                    “I am so happy to book my travel experience with Journey Holidays.
-                    The team was well trained, professional and answered all my queries.”
+                    "I am so happy to book my travel experience with Journey Holidays.
+                    The team was well trained, professional and answered all my queries."
                 </p>
 
                 <h4 id="exp-name">Shubham Srivastava</h4>
                 <span id="exp-role">Traveller</span>
 
-                <!-- Pagination dots -->
                 <div class="exp-dots">
                     <span class="dot active" onclick="showExp(0)"></span>
                     <span class="dot" onclick="showExp(1)"></span>
@@ -1511,25 +1804,22 @@
                 </div>
             </div>
 
-            <!-- Play Button -->
             <div class="exp-video-btn">
                 <span>▶</span>
             </div>
-
         </div>
     </section>
+
     <section class="jh-premium">
         <h2>Premium Group Tours</h2>
 
-
-        <div class="carousel-container" style="position:relative; max-width:1200px; margin:0 auto;">
+        <div class="carousel-container" style="position:relative; max-width:1400px; margin:0 auto;">
             <div class="stress-arrow left" onclick="premiumPrev()">❮</div>
             <div class="stress-arrow right" onclick="premiumNext()">❯</div>
 
-            <div class="jh-track">
-
+            <div class="jh-track" id="premiumTrack">
                 <div class="jh-card">
-                    <img src="./Images/russia.jpg">
+                    <img src="./Images/russia.jpg" alt="Russia Tour">
                     <div class="jh-info">
                         <span>9 Nights / 10 Days</span>
                         <h3>Russia<br>Group Departure</h3>
@@ -1537,7 +1827,7 @@
                 </div>
 
                 <div class="jh-card">
-                    <img src="./Images/europe-winter.jpg">
+                    <img src="./Images/europe-winter.jpg" alt="Europe Winter Tour">
                     <div class="jh-info">
                         <span>9 Nights / 10 Days</span>
                         <h3>Europe Winter<br>Group Departure</h3>
@@ -1545,7 +1835,7 @@
                 </div>
 
                 <div class="jh-card">
-                    <img src="./Images/bali.jpg">
+                    <img src="./Images/bali.jpg" alt="Bali Tour">
                     <div class="jh-info">
                         <span>4 Nights / 5 Days</span>
                         <h3>Fantastic Bali<br>Group Departure</h3>
@@ -1553,7 +1843,7 @@
                 </div>
 
                 <div class="jh-card">
-                    <img src="./Images/egypt.jpg">
+                    <img src="./Images/egypt.jpg" alt="Egypt Tour">
                     <div class="jh-info">
                         <span>4 Nights / 5 Days</span>
                         <h3>Dreams of Egypt<br>Group Tour</h3>
@@ -1561,7 +1851,7 @@
                 </div>
 
                 <div class="jh-card">
-                    <img src="./Images/dubai.jpg">
+                    <img src="./Images/dubai.jpg" alt="Dubai Tour">
                     <div class="jh-info">
                         <span>5 Nights / 6 Days</span>
                         <h3>Dubai<br>Group Tour</h3>
@@ -1569,7 +1859,7 @@
                 </div>
 
                 <div class="jh-card">
-                    <img src="./Images/singapore.jpg">
+                    <img src="./Images/singapore.jpg" alt="Singapore Tour">
                     <div class="jh-info">
                         <span>6 Nights / 7 Days</span>
                         <h3>Singapore & Malaysia<br>Group Tour</h3>
@@ -1577,7 +1867,7 @@
                 </div>
 
                 <div class="jh-card">
-                    <img src="./Images/thailand.jpg">
+                    <img src="./Images/thailand.jpg" alt="Thailand Tour">
                     <div class="jh-info">
                         <span>5 Nights / 6 Days</span>
                         <h3>Thailand<br>Group Tour</h3>
@@ -1585,7 +1875,7 @@
                 </div>
 
                 <div class="jh-card">
-                    <img src="./Images/australia.jpg">
+                    <img src="./Images/australia.jpg" alt="Australia Tour">
                     <div class="jh-info">
                         <span>9 Nights / 10 Days</span>
                         <h3>Australia<br>Group Tour</h3>
@@ -1593,7 +1883,7 @@
                 </div>
 
                 <div class="jh-card">
-                    <img src="./Images/japan.jpg">
+                    <img src="./Images/japan.jpg" alt="Japan Tour">
                     <div class="jh-info">
                         <span>6 Nights / 7 Days</span>
                         <h3>Japan<br>Group Tour</h3>
@@ -1601,7 +1891,7 @@
                 </div>
 
                 <div class="jh-card">
-                    <img src="./Images/turkey.jpg">
+                    <img src="./Images/turkey.jpg" alt="Turkey Tour">
                     <div class="jh-info">
                         <span>7 Nights / 8 Days</span>
                         <h3>Turkey<br>Group Tour</h3>
@@ -1609,33 +1899,26 @@
                 </div>
             </div>
         </div>
-        </div>
 
         <a href="#" class="jh-btn">KNOW MORE</a>
     </section>
+
     <section class="contact-section" id="contact">
-
         <div class="contact-container">
-
-            <!-- LEFT SIDE -->
             <div class="contact-left">
                 <h3>Stay Connected</h3>
-
                 <div class="contact-item">
                     📞
                     <span>+91 8344441997</span>
                 </div>
-
                 <div class="contact-item">
                     ✉️
                     <span>mail@journeyholidays.in</span>
                 </div>
             </div>
 
-            <!-- RIGHT SIDE FORM -->
             <div class="contact-form">
                 <h3>Book Your Dream Vacay Today!</h3>
-
                 <form>
                     <input type="text" placeholder="Name *" required>
                     <input type="text" placeholder="City of Residence *" required>
@@ -1646,36 +1929,25 @@
                     <input type="date" required>
                     <input type="number" placeholder="No. of People *" required>
                     <input type="text" placeholder="Vacation Type *">
-
                     <label class="captcha">Captcha *</label>
                     <input type="text" placeholder="10 + 10 =">
-
                     <button type="submit">SUBMIT</button>
                 </form>
             </div>
-
         </div>
     </section>
 
-    <!-- FLOATING WHATSAPP & ENQUIRE -->
     <div class="floating-actions">
-
-        <!-- WhatsApp -->
         <a href="https://wa.me/918344441997" target="_blank" class="whatsapp-float">
             <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
         </a>
-
-        <!-- Enquire -->
         <button class="enquire-float" onclick="scrollToContact()">
             ENQUIRE
         </button>
-
     </div>
+
     <footer class="gt-footer">
-
         <div class="gt-footer-top">
-
-            <!-- Corporate Office -->
             <div class="footer-col">
                 <h4>Corporate Office</h4>
                 <p>
@@ -1687,7 +1959,6 @@
                 </p>
             </div>
 
-            <!-- Head Office -->
             <div class="footer-col">
                 <h4>Head Office</h4>
                 <p>
@@ -1699,7 +1970,6 @@
                 </p>
             </div>
 
-            <!-- Branches -->
             <div class="footer-col">
                 <h4>Our Branches</h4>
                 <div class="branch-grid">
@@ -1710,7 +1980,6 @@
                     <span>Coimbatore</span>
                     <span>Erode</span>
                     <span>Madurai</span>
-
                     <span>Trichy</span>
                     <span>Salem</span>
                     <span>Kochi</span>
@@ -1720,21 +1989,17 @@
                     <span>Kanyakumari</span>
                 </div>
             </div>
-
         </div>
 
-        <!-- Contact row -->
         <div class="gt-footer-mid">
             <div>
                 <small>Call Us</small>
                 <h3>+91 8344441997</h3>
             </div>
-
             <div>
                 <small>Email Us</small>
                 <h3>mail@journeyholidays.in</h3>
             </div>
-
             <div class="social">
                 <small>Follow Us</small>
                 <div class="icons">
@@ -1747,226 +2012,218 @@
             </div>
         </div>
 
-        <!-- Bottom bar -->
         <div class="gt-footer-bottom">
             <p>Copyright © 2026 Journey Holidays Pvt Ltd. All Rights Reserved.</p>
-
             <div class="footer-links">
                 <a href="#">Privacy Policy</a> |
                 <a href="#">Terms & Conditions</a> |
                 <a href="#">Cancellation & Refund Policy</a>
             </div>
-
-            <!-- <button class="footer-enquire" onclick="scrollToContact()">ENQUIRE NOW</button> -->
         </div>
-
     </footer>
 
     <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const mobileNav = document.getElementById('mobileNav');
+            mobileNav.classList.toggle('active');
+        }
 
-        window.addEventListener('load', () => {
-
-            const track = document.querySelector('.upcoming-packages .carousel-track');
-            const cards = Array.from(document.querySelectorAll('.upcoming-card'));
-            const dotsContainer = document.querySelector('.carousel-dots');
-
-            const cardsPerView = 4;
-            let currentIndex = 0;
-
-            /* 🔒 Lock track width to prevent jump */
-            track.style.willChange = 'transform';
-
-            /* Clone first 4 cards AFTER images loaded */
-            for (let i = 0; i < cardsPerView; i++) {
-                const clone = cards[i].cloneNode(true);
-                track.appendChild(clone);
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileNav = document.getElementById('mobileNav');
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (!mobileNav.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
+                mobileNav.classList.remove('active');
             }
-
-            const totalSlides = Math.ceil(cards.length / cardsPerView);
-
-            // Create dots
-            for (let i = 0; i < totalSlides; i++) {
-                const dot = document.createElement('span');
-                if (i === 0) dot.classList.add('active');
-                dot.addEventListener('click', () => moveToSlide(i));
-                dotsContainer.appendChild(dot);
-            }
-
-            const dots = document.querySelectorAll('.carousel-dots span');
-
-            function moveToSlide(index) {
-                currentIndex = index;
-                track.style.transition = 'transform 0.8s ease-in-out';
-                track.style.transform = `translateX(-${index * 100}%)`;
-
-                dots.forEach(dot => dot.classList.remove('active'));
-                dots[index]?.classList.add('active');
-            }
-
-            function autoSlide() {
-                currentIndex++;
-                track.style.transition = 'transform 0.8s ease-in-out';
-                track.style.transform = `translateX(-${currentIndex * 100}%)`;
-
-                if (currentIndex === totalSlides) {
-                    setTimeout(() => {
-                        track.style.transition = 'none';
-                        currentIndex = 0;
-                        track.style.transform = `translateX(0)`;
-                    }, 850);
-                }
-
-                dots.forEach(dot => dot.classList.remove('active'));
-                dots[currentIndex % totalSlides]?.classList.add('active');
-            }
-
-            setInterval(autoSlide, 4000);
         });
 
-
-        /* HERO SLIDER */
+        // HERO SLIDER
         const slides = document.querySelectorAll('.slide');
-        let index = 0;
+        let heroIndex = 0;
 
         function showSlide(i) {
             slides.forEach(s => s.classList.remove('active'));
             slides[i].classList.add('active');
+            heroIndex = i;
         }
 
         function nextSlide() {
-            index = (index + 1) % slides.length;
-            showSlide(index);
+            heroIndex = (heroIndex + 1) % slides.length;
+            showSlide(heroIndex);
         }
 
         function prevSlide() {
-            index = (index - 1 + slides.length) % slides.length;
-            showSlide(index);
+            heroIndex = (heroIndex - 1 + slides.length) % slides.length;
+            showSlide(heroIndex);
         }
 
-        setInterval(nextSlide, 5000);
+        // Auto slide for hero
+        let heroInterval = setInterval(nextSlide, 5000);
 
-        /* SMOOTH SCROLL ANIMATION */
-        const section = document.querySelector('.popular-packages');
-        const packageCards = document.querySelectorAll('.package-card');
+        // Pause auto slide on hover
+        const heroSlider = document.querySelector('.hero-slider');
+        heroSlider.addEventListener('mouseenter', () => clearInterval(heroInterval));
+        heroSlider.addEventListener('mouseleave', () => {
+            heroInterval = setInterval(nextSlide, 5000);
+        });
 
-        const observer = new IntersectionObserver(entries => {
-            if (entries[0].isIntersecting) {
-                section.classList.add('reveal');
+        // UPCOMING PACKAGES CAROUSEL
+        const upcomingTrack = document.getElementById('upcomingTrack');
+        const upcomingCards = Array.from(document.querySelectorAll('.upcoming-card'));
+        const upcomingDots = document.getElementById('upcomingDots');
+        let upcomingIndex = 0;
 
-                packageCards.forEach((card, i) => {
-                    setTimeout(() => {
-                        card.classList.add('reveal');
-                    }, i * 180);
-                });
-
-                observer.unobserve(section);
+        function initUpcomingCarousel() {
+            const isMobile = window.innerWidth <= 768;
+            const isTablet = window.innerWidth <= 992;
+            let cardsPerView;
+            
+            if (isMobile) {
+                cardsPerView = 1;
+            } else if (isTablet) {
+                cardsPerView = 2;
+            } else {
+                cardsPerView = 4;
             }
-        }, { threshold: 0.25 });
 
-        observer.observe(section);
+            // Clear existing dots
+            upcomingDots.innerHTML = '';
+            
+            // Calculate total slides
+            const totalSlides = Math.ceil(upcomingCards.length / cardsPerView);
+            
+            // Create dots
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('span');
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => moveToUpcomingSlide(i, cardsPerView));
+                upcomingDots.appendChild(dot);
+            }
+            
+            // Set initial position
+            moveToUpcomingSlide(0, cardsPerView);
+        }
 
-        /* WHY CHOOSE US animation */
-        const whyCards = document.querySelectorAll('.why-card');
+        function moveToUpcomingSlide(index, cardsPerView) {
+            upcomingIndex = index;
+            const trackWidth = upcomingTrack.offsetWidth;
+            const cardWidth = trackWidth / cardsPerView;
+            upcomingTrack.style.transform = `translateX(-${index * cardWidth * cardsPerView}px)`;
+            
+            // Update dots
+            const dots = document.querySelectorAll('#upcomingDots span');
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[index]?.classList.add('active');
+        }
 
-        const whyObserver = new IntersectionObserver(entries => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.classList.add('reveal');
-                    }, index * 200);
-                }
-            });
-        }, { threshold: 0.3 });
+        // Auto slide for upcoming packages
+        setInterval(() => {
+            const isMobile = window.innerWidth <= 768;
+            const isTablet = window.innerWidth <= 992;
+            let cardsPerView;
+            
+            if (isMobile) {
+                cardsPerView = 1;
+            } else if (isTablet) {
+                cardsPerView = 2;
+            } else {
+                cardsPerView = 4;
+            }
+            
+            const totalSlides = Math.ceil(upcomingCards.length / cardsPerView);
+            upcomingIndex = (upcomingIndex + 1) % totalSlides;
+            moveToUpcomingSlide(upcomingIndex, cardsPerView);
+        }, 4000);
 
-        whyCards.forEach(card => whyObserver.observe(card));
-        const stressTrack = document.querySelector('.stress-free .carousel-track');
+        // STRESS FREE CAROUSEL
+        const stressTrack = document.getElementById('stressTrack');
         const stressCards = Array.from(document.querySelectorAll('.stress-card'));
         let stressIndex = 0;
 
-        const stressPerView = 4; // Number of cards visible at once
-        const cardStyle = getComputedStyle(stressCards[0]);
-        const cardMargin = parseInt(cardStyle.marginRight) + parseInt(cardStyle.marginLeft);
-        const cardWidth = stressCards[0].offsetWidth + cardMargin;
-
-        function stressMoveToSlide(i) {
-            stressIndex = i;
-            stressTrack.style.transition = 'transform 0.8s ease-in-out';
-            stressTrack.style.transform = `translateX(-${i * cardWidth}px)`;
-        }
-
-        // Auto slide
-        function stressAutoSlide() {
-            stressIndex++;
-            if (stressIndex > stressCards.length - stressPerView) {
-                setTimeout(() => {
-                    stressTrack.style.transition = 'none';
-                    stressIndex = 0;
-                    stressTrack.style.transform = `translateX(0)`;
-                }, 850);
-            } else {
-                stressTrack.style.transition = 'transform 0.8s ease-in-out';
-                stressTrack.style.transform = `translateX(-${stressIndex * cardWidth}px)`;
-            }
-        }
         function stressNext() {
+            const isMobile = window.innerWidth <= 768;
+            const isTablet = window.innerWidth <= 992;
+            let cardsPerView;
+            
+            if (isMobile) {
+                cardsPerView = 1;
+            } else if (isTablet) {
+                cardsPerView = 2;
+            } else {
+                cardsPerView = 4;
+            }
+            
             stressIndex++;
-            if (stressIndex > stressCards.length - stressPerView) {
+            if (stressIndex > stressCards.length - cardsPerView) {
                 stressIndex = 0;
             }
-            stressTrack.style.transition = 'transform 0.8s ease-in-out';
+            
+            const trackWidth = stressTrack.offsetWidth;
+            const cardWidth = trackWidth / cardsPerView;
             stressTrack.style.transform = `translateX(-${stressIndex * cardWidth}px)`;
         }
 
         function stressPrev() {
+            const isMobile = window.innerWidth <= 768;
+            const isTablet = window.innerWidth <= 992;
+            let cardsPerView;
+            
+            if (isMobile) {
+                cardsPerView = 1;
+            } else if (isTablet) {
+                cardsPerView = 2;
+            } else {
+                cardsPerView = 4;
+            }
+            
             stressIndex--;
             if (stressIndex < 0) {
-                stressIndex = stressCards.length - stressPerView;
+                stressIndex = stressCards.length - cardsPerView;
             }
-            stressTrack.style.transition = 'transform 0.8s ease-in-out';
+            
+            const trackWidth = stressTrack.offsetWidth;
+            const cardWidth = trackWidth / cardsPerView;
             stressTrack.style.transform = `translateX(-${stressIndex * cardWidth}px)`;
         }
 
+        // Auto slide for stress free
+        setInterval(stressNext, 4000);
 
-        setInterval(stressAutoSlide, 4000);
-
-
-        const premiumTrack = document.querySelector('.jh-track');
+        // PREMIUM GROUP TOURS CAROUSEL
+        const premiumTrack = document.getElementById('premiumTrack');
         const premiumCards = Array.from(document.querySelectorAll('.jh-card'));
         let premiumIndex = 0;
 
-        const premiumPerView = 4;
-        const pStyle = getComputedStyle(premiumCards[0]);
-        const pMargin = parseInt(pStyle.marginRight) + parseInt(pStyle.marginLeft);
-        const pWidth = premiumCards[0].offsetWidth + pMargin;
-
         function premiumNext() {
+            const isMobile = window.innerWidth <= 768;
+            const cardWidth = isMobile ? 280 : 260;
+            
             premiumIndex++;
-            if (premiumIndex > premiumCards.length - premiumPerView) {
+            if (premiumIndex > premiumCards.length - 1) {
                 premiumIndex = 0;
             }
-            premiumTrack.style.transform = `translateX(-${premiumIndex * pWidth}px)`;
+            
+            premiumTrack.style.transform = `translateX(-${premiumIndex * cardWidth}px)`;
         }
 
         function premiumPrev() {
+            const isMobile = window.innerWidth <= 768;
+            const cardWidth = isMobile ? 280 : 260;
+            
             premiumIndex--;
             if (premiumIndex < 0) {
-                premiumIndex = premiumCards.length - premiumPerView;
+                premiumIndex = premiumCards.length - 1;
             }
-            premiumTrack.style.transform = `translateX(-${premiumIndex * pWidth}px)`;
+            
+            premiumTrack.style.transform = `translateX(-${premiumIndex * cardWidth}px)`;
         }
 
-        function premiumAutoSlide() {
-            premiumIndex++;
-            if (premiumIndex > premiumCards.length - premiumPerView) {
-                premiumIndex = 0;
-            }
-            premiumTrack.style.transform = `translateX(-${premiumIndex * pWidth}px)`;
-        }
+        // Auto slide for premium tours
+        setInterval(premiumNext, 4000);
 
-        setInterval(premiumAutoSlide, 4000);
-
-
-
+        // EXPERIENCE TESTIMONIALS
         const experiences = [
             {
                 desc: "I am so happy to book my travel experience with Journey Holidays. The team was well trained and professional.",
@@ -1989,7 +2246,7 @@
         const descEl = document.getElementById("exp-desc");
         const nameEl = document.getElementById("exp-name");
         const roleEl = document.getElementById("exp-role");
-        const dots = document.querySelectorAll(".exp-dots .dot");
+        const expDots = document.querySelectorAll(".exp-dots .dot");
 
         function showExp(index) {
             expIndex = index;
@@ -1997,24 +2254,74 @@
             nameEl.innerText = experiences[index].name;
             roleEl.innerText = experiences[index].role;
 
-            dots.forEach(d => d.classList.remove("active"));
-            dots[index].classList.add("active");
+            expDots.forEach(d => d.classList.remove("active"));
+            expDots[index].classList.add("active");
         }
 
-        // Auto slide
+        // Auto slide for experiences
         setInterval(() => {
             expIndex = (expIndex + 1) % experiences.length;
             showExp(expIndex);
         }, 5000);
 
+        // SCROLL TO CONTACT
         function scrollToContact() {
             document.getElementById("contact").scrollIntoView({
                 behavior: "smooth"
             });
         }
 
-    </script>
+        // REVEAL ANIMATIONS
+        const section = document.querySelector('.popular-packages');
+        const packageCards = document.querySelectorAll('.package-card');
+        const whyCards = document.querySelectorAll('.why-card');
 
+        const observer = new IntersectionObserver(entries => {
+            if (entries[0].isIntersecting) {
+                section.classList.add('reveal');
+
+                packageCards.forEach((card, i) => {
+                    setTimeout(() => {
+                        card.classList.add('reveal');
+                    }, i * 180);
+                });
+
+                observer.unobserve(section);
+            }
+        }, { threshold: 0.25 });
+
+        observer.observe(section);
+
+        const whyObserver = new IntersectionObserver(entries => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('reveal');
+                    }, index * 200);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        whyCards.forEach(card => whyObserver.observe(card));
+
+        // Initialize carousels on load
+        window.addEventListener('load', () => {
+            initUpcomingCarousel();
+            // Trigger initial positions
+            stressNext();
+            premiumNext();
+        });
+
+        // Reinitialize on resize
+        window.addEventListener('resize', initUpcomingCarousel);
+
+        // Prevent form submission for demo
+        document.querySelector('.contact-form form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your enquiry! We will contact you soon.');
+            this.reset();
+        });
+    </script>
 
 </body>
 
